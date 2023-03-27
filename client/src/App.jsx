@@ -1,11 +1,8 @@
-import './pages/Compiler'
-import './App.css'
+import Compiler from './pages/Compiler';
+import './App.css';
 
 function App() {
-
-  return (
-    <Compiler />
-  )
+  return <Compiler />;
 }
 
-export default App
+export default App;
