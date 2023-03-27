@@ -1,12 +1,12 @@
 import React from 'react';
-import CodeEditor from '../components/CodeEditor';
-import Terminal from '../components/Terminal';
+import Header from '../components/Header';
+import Card from '../components/Card';
 
 function Compiler() {
   return (
-    <div>
-        <CodeEditor />
-        <Terminal />
+    <div className="compiler">
+      <Header />
+      <Card />
     </div>
   );
 }

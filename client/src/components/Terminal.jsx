@@ -1,8 +1,13 @@
 import React from 'react'
+import Output from './Output'
+import Input from './Input'
 
 function Terminal() {
   return (
-    <div>Terminal</div>
+    <div className='terminal'>
+      <Output />
+      <Input />
+    </div>
   )
 }
 

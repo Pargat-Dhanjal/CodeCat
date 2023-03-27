@@ -2,10 +2,8 @@ import React from 'react'
 
 function Header() {
   return (
-    <div>
-        <img src="/client/public/vite.svg" alt="Logo" />
-        <DarkMode />
-        <LanguageButton />
+    <div className='header'>
+      <h1>Header</h1>
     </div>
   )
 }
