@@ -21,6 +21,9 @@ function CodeEditor({ theme , language , code, handelChange}) {
         defaultValue="//Write your code here..."
         value={code}
         onChange={handelChange}
+        options={{
+          fontSize:"13px"
+      }}
       />
     </div>
   );

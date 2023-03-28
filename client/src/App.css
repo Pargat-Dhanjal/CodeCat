@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+
 :root {
   --primary: #011627;
   --secondary: #010E1A;
@@ -48,17 +51,25 @@ body {
   width: 30%;
   margin-left: 1rem;
   border-radius: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 .output {
+  display: flex;
+  flex-direction: column;
   height: 70%;
   width: 100%;
-  background-color: var(--primary);
-  border-radius: 0.5rem;
-  padding: 0.5rem;
   color: var(--white);
   font-size: 1rem;
   overflow: auto;
+}
+
+.output-terminal{
+  margin-top: 1rem;
+  flex-grow: 1;
+  background-color: var(--primary);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }
 
 .input {
@@ -67,7 +78,21 @@ body {
   margin-top: 1rem;
   width: 100%;
   background-color: var(--primary);
-  border: 1px solid #9043ee7c ;
+  border: 1px solid #9043ee7c;
   border-radius: 0.5rem;
   padding: 0.5rem;
+}
+
+.input textarea{
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  border: none;
+  resize: none;
+  color: var(--white);
+  font-size: 1rem;
+}
+
+.input textarea:focus {
+  outline: none;
 }
