@@ -3,10 +3,10 @@ import CodeEditor from './CodeEditor'
 import Terminal from './Terminal';
 import dark from '../lib/defineTheme'
 
-function Card() {
+function Card({language}) {
   return (
     <div className="card">
-      <CodeEditor theme={dark} />
+      <CodeEditor theme={dark} language={language} />
       <Terminal />
     </div>
   );

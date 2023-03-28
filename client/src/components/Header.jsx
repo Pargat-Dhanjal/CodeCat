@@ -1,9 +1,11 @@
 import React from 'react'
+import LanguagesDropdown from './LanguagesDropdown'
 
-function Header() {
+function Header({handelLanguage}) {
+
   return (
     <div className='header'>
-      <h1>Header</h1>
+      <LanguagesDropdown handelLanguage={handelLanguage} />
     </div>
   )
 }
