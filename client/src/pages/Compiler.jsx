@@ -5,11 +5,16 @@ import { languageOptions } from '../constants/languages';
 import { decode, encode } from 'base-64';
 import axios from 'axios';
 
+// env variables
+const host = import.meta.env.VITE_APP_RAPID_API_HOST;
+const apiKey = import.meta.env.VITE_APP_RAPID_API_KEY;
+const url = import.meta.env.VITE_APP_RAPID_API_URL;
+
 function Compiler() {
   const [code, setCode] = useState(`console.log('Hello world')`);
   const [language, setLanguage] = useState(languageOptions[0]);
   const [customInput, setCustomInput] = useState('');
-  const [customOutput, setCustomOutput] = useState(null);
+  const [output, setOutput] = useState(null);
   const [processing, setProcessing] = useState(null);
 
   const handleCompile = () => {
@@ -22,13 +27,13 @@ function Compiler() {
     console.log('formData', formData);
     const options = {
       method: 'POST',
-      url: 'https://judge0-ce.p.rapidapi.com/submissions',
+      url: url,
       params: { base64_encoded: 'true', fields: '*' },
       headers: {
         'content-type': 'application/json',
         'Content-Type': 'application/json',
-        'X-RapidAPI-Key': 'c7d2c615e2mshc137c8bf73401edp1ca146jsn284aa7fa4032',
-        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
+        'X-RapidAPI-Host': host,
+        'X-RapidAPI-Key': apiKey,
       },
       data: formData,
     };
@@ -36,21 +41,30 @@ function Compiler() {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        console.log('res.data', response.data);
+        const token = response.data.token;
+        checkStatus(token);
       })
-      .catch(function (error) {
-        console.error(error);
+      .catch((err) => {
+        let error = err.response ? err.response.data : err;
+        let status = err.response.status;
+        console.log('status', status);
+        if (status === 429) {
+          console.log('too many requests', status);
+        }
+        setProcessing(false);
+        console.log('catch block...', error);
       });
   };
 
   const checkStatus = async (token) => {
     const options = {
       method: 'GET',
-      url: import.meta.env.REACT_APP_RAPID_API_URL + '/' + token,
+      url: url + '/' + token,
       params: { base64_encoded: 'true', fields: '*' },
       headers: {
-        'X-RapidAPI-Host': import.meta.env.REACT_APP_RAPID_API_HOST,
-        'X-RapidAPI-Key': import.meta.env.REACT_APP_RAPID_API_KEY,
+        'X-RapidAPI-Host': host,
+        'X-RapidAPI-Key': apiKey,
       },
     };
     try {
@@ -66,15 +80,13 @@ function Compiler() {
         return;
       } else {
         setProcessing(false);
-        setOutputDetails(response.data);
-        showSuccessToast(`Compiled Successfully!`);
-        console.log('response.data', decode(response.data));
+        console.log(`Compiled Successfully!`);
+        setOutput(response.data);
         return;
       }
     } catch (err) {
       console.log('err', err);
       setProcessing(false);
-      showErrorToast();
     }
   };
 
@@ -89,6 +101,7 @@ function Compiler() {
         language={language.value}
         code={code}
         handelChange={(value) => setCode(value)}
+        output={output}
       />
     </div>
   );

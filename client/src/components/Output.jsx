@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { decode } from 'base-64';
 
-function Output() {
-  return (
-    <div className='output'>Output</div>
-  )
+function Output({ output }) {
+  return <pre className="output">{output ? decode(output.stdout) : ''}</pre>;
 }
 
-export default Output
+export default Output;
