@@ -5,7 +5,7 @@ function Header({handleLanguage}) {
 
   return (
     <div className='header'>
-      <img src="/public/logo.svg" alt="Logo" className='logo'/>
+      <img src="/logo.svg" alt="Logo" className='logo'/>
       <LanguagesDropdown handleLanguage={handleLanguage} />
     </div>
   )
