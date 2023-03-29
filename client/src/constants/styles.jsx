@@ -1,7 +1,9 @@
 export const styleOptions = {
   control: (styles) => ({
     ...styles,
-    width: '16rem',
+    width: '20vw',
+    minWidth:'10rem',
+    maxWidth: '15rem',
     borderRadius: '5px',
     color: 'black',
     fontSize: '0.9rem',

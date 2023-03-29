@@ -1,13 +1,12 @@
 import React from 'react';
-import { useState } from 'react';
 import Editor, { loader } from '@monaco-editor/react';
 
-function CodeEditor({ theme, language, code, handelChange  }) {
+function CodeEditor({ theme, language, code, handelChange }) {
   loader.init().then((monaco) => {
     monaco.editor.defineTheme('dark', theme);
   });
 
-  console.log(language);
+  const width = window.innerWidth < 720 ? '12px' : '16px';
 
   return (
     <div className="code-editor">
@@ -20,7 +19,7 @@ function CodeEditor({ theme, language, code, handelChange  }) {
         value={code}
         onChange={handelChange}
         options={{
-          fontSize: '16px',
+          fontSize: [width],
         }}
       />
     </div>
