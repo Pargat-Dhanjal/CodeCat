@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 
 :root {
@@ -10,27 +11,50 @@
 
 body {
   background-color: var(--primary);
+  font-family: 'Inter', sans-serif;
 }
 
 .compiler {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   width: 100vw;
 }
 
 .header {
-  height: 10vh;
+  margin-top: 1rem;
+  height: 4rem;
+  width: 100%;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo{
+  height: 3.5rem;
+  width: auto;
+}
+
+.languages-dropdown {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .card {
   display: flex;
   align-items: center;
   border-radius: 1rem;
-  height: 85%;
-  width: 95%;
+  height: 95%;
+  width: 97%;
   background: var(--secondary);
   box-shadow: 9px 9px 18px #01101c,
     -9px -9px 18px #011c32;
@@ -61,29 +85,51 @@ body {
   width: 100%;
   color: var(--white);
   font-size: 1rem;
-  overflow: auto;
 }
 
-.output-terminal{
-  margin-top: 1rem;
+.output-header {
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+}
+
+.output-title {
+  font-weight: 400;
+}
+
+.output-button {
+  padding: 0.5rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  background-color: var(--accent);
+  color: var(--white);
+  border: none;
+  font-weight: 600;
+
+}
+
+.output-terminal {
+  margin-top: 0.5rem;
   flex-grow: 1;
   background-color: var(--primary);
   border-radius: 0.5rem;
   padding: 0.5rem;
+  overflow: auto;
 }
 
-.input {
+.input-tile {
   color: var(--white);
   flex-grow: 1;
   margin-top: 1rem;
   width: 100%;
   background-color: var(--primary);
-  border: 1px solid #9043ee7c;
+  border: 1px solid rgba(143, 67, 238, 0.58);
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
 
-.input textarea{
+.input-tile textarea {
   background-color: transparent;
   height: 100%;
   width: 100%;
@@ -93,6 +139,6 @@ body {
   font-size: 1rem;
 }
 
-.input textarea:focus {
+.input-tile textarea:focus {
   outline: none;
 }

@@ -5,7 +5,6 @@ import { languageOptions } from '../constants/languages';
 import { decode, encode } from 'base-64';
 import axios from 'axios';
 
-// env variables
 const host = import.meta.env.VITE_APP_RAPID_API_HOST;
 const apiKey = import.meta.env.VITE_APP_RAPID_API_KEY;
 const url = import.meta.env.VITE_APP_RAPID_API_URL;
@@ -17,7 +16,8 @@ function Compiler() {
   const [output, setOutput] = useState(null);
   const [processing, setProcessing] = useState(null);
 
-  const handleCompile = () => {
+  const handelCompile = () => {
+    console.log('handelCompile');
     setProcessing(true);
     const formData = {
       language_id: language.id,
@@ -91,21 +91,24 @@ function Compiler() {
     }
   };
 
-  function handelLanguage(l) {
+  function handleLanguage(l) {
     setLanguage(l);
   }
 
   return (
     <div className="compiler">
-      <Header handelLanguage={handelLanguage} handleCompile={handleCompile} />
-      <Card
-        language={language.value}
-        code={code}
-        handelChange={(value) => setCode(value)}
-        output={output}
-        input={customInput}
-        setInput={(i) => setCustomInput(i)}
-      />
+      <Header handleLanguage={handleLanguage} />
+      <div className='wrapper'>
+        <Card
+          language={language.value}
+          code={code}
+          handelChange={(value) => setCode(value)}
+          output={output}
+          input={customInput}
+          setInput={(i) => setCustomInput(i)}
+          handelCompile={handelCompile}
+        />
+      </div>
     </div>
   );
 }

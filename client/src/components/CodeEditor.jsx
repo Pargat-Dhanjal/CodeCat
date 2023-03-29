@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Editor, { loader } from '@monaco-editor/react';
 
-function CodeEditor({ theme, language, code, handelChange }) {
+function CodeEditor({ theme, language, code, handelChange  }) {
   loader.init().then((monaco) => {
     monaco.editor.defineTheme('dark', theme);
   });

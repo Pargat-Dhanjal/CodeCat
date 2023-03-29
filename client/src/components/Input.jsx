@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function Input({ input, setInput }) {
   return (
-    <div className="input">
+    <div className="input-tile">
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}

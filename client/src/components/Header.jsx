@@ -1,12 +1,12 @@
 import React from 'react'
 import LanguagesDropdown from './LanguagesDropdown'
 
-function Header({handelLanguage , handleCompile}) {
+function Header({handleLanguage}) {
 
   return (
     <div className='header'>
-      <button onClick={handleCompile}>Compile</button>
-      <LanguagesDropdown handelLanguage={handelLanguage} />
+      <img src="/public/logo.svg" alt="Logo" className='logo'/>
+      <LanguagesDropdown handleLanguage={handleLanguage} />
     </div>
   )
 }

@@ -3,7 +3,15 @@ import CodeEditor from './CodeEditor';
 import Terminal from './Terminal';
 import dark from '../lib/defineTheme';
 
-function Card({ language, code, handelChange, output, input, setInput }) {
+function Card({
+  language,
+  code,
+  handelChange,
+  output,
+  input,
+  setInput,
+  handelCompile,
+}) {
   return (
     <div className="card">
       <CodeEditor
@@ -12,7 +20,12 @@ function Card({ language, code, handelChange, output, input, setInput }) {
         code={code}
         handelChange={handelChange}
       />
-      <Terminal output={output} input={input} setInput={setInput} />
+      <Terminal
+        output={output}
+        input={input}
+        setInput={setInput}
+        handelCompile={handelCompile}
+      />
     </div>
   );
 }
