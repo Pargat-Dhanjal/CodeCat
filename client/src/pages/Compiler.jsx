@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Card from '../components/Card';
 import { languageOptions } from '../constants/languages';
+import { boilerPlate } from '../constants/boilerPlate';
 import { decode, encode } from 'base-64';
 import axios from 'axios';
 
@@ -10,11 +11,20 @@ const apiKey = import.meta.env.VITE_APP_RAPID_API_KEY;
 const url = import.meta.env.VITE_APP_RAPID_API_URL;
 
 function Compiler() {
-  const [code, setCode] = useState(`console.log('Hello world')`);
+  const [code, setCode] = useState('');
   const [language, setLanguage] = useState(languageOptions[0]);
   const [customInput, setCustomInput] = useState('');
   const [output, setOutput] = useState(null);
   const [processing, setProcessing] = useState(null);
+  const foundItem = boilerPlate.find((code) => code.name == language.value);
+
+  console.log(foundItem);
+
+  useEffect(() => {
+    if (foundItem) {
+      setCode(foundItem.value);
+    }
+  }, [language]);
 
   const handelCompile = () => {
     console.log('handelCompile');
@@ -71,10 +81,7 @@ function Compiler() {
     try {
       let response = await axios.request(options);
       let statusId = response.data.status?.id;
-
-      // Processed - we have a result
       if (statusId === 1 || statusId === 2) {
-        // still processing
         setTimeout(() => {
           checkStatus(token);
         }, 2000);
@@ -98,7 +105,7 @@ function Compiler() {
   return (
     <div className="compiler">
       <Header handleLanguage={handleLanguage} />
-      <div className='wrapper'>
+      <div className="wrapper">
         <Card
           language={language.value}
           code={code}

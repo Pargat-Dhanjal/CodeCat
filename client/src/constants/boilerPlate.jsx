@@ -2,7 +2,7 @@ export const boilerPlate = [
   {
     name: 'javascript',
     value: `// Write your code here
-    console.log('Hello World')`,
+console.log('Hello World')`,
   },
   {
       name: "assembly",
@@ -30,9 +30,7 @@ export const boilerPlate = [
   },
   {
     name: 'c',
-    value: `
-    #include <stdio.h>
-    
+    value: `#include <stdio.h>
     int main() {
         // Write C code here
         printf("Hello world");
