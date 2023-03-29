@@ -24,6 +24,7 @@ function Compiler() {
       source_code: encode(code),
       stdin: encode(customInput),
     };
+
     console.log('formData', formData);
     const options = {
       method: 'POST',
@@ -102,6 +103,8 @@ function Compiler() {
         code={code}
         handelChange={(value) => setCode(value)}
         output={output}
+        input={customInput}
+        setInput={(i) => setCustomInput(i)}
       />
     </div>
   );

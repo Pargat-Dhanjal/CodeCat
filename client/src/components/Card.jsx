@@ -3,11 +3,16 @@ import CodeEditor from './CodeEditor';
 import Terminal from './Terminal';
 import dark from '../lib/defineTheme';
 
-function Card({ language, code, handelChange, output }) {
+function Card({ language, code, handelChange, output, input, setInput }) {
   return (
     <div className="card">
-      <CodeEditor theme={dark} language={language} code={code} handelChange={handelChange} />
-      <Terminal output={output} />
+      <CodeEditor
+        theme={dark}
+        language={language}
+        code={code}
+        handelChange={handelChange}
+      />
+      <Terminal output={output} input={input} setInput={setInput} />
     </div>
   );
 }

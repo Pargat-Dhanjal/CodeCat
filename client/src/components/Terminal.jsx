@@ -1,14 +1,14 @@
-import React from 'react'
-import Output from './Output'
-import Input from './Input'
+import React from 'react';
+import Output from './Output';
+import Input from './Input';
 
-function Terminal({output}) {
+function Terminal({ output, input, setInput }) {
   return (
-    <div className='terminal'>
+    <div className="terminal">
       <Output output={output} />
-      <Input />
+      <Input input={input} setInput={setInput} />
     </div>
-  )
+  );
 }
 
-export default Terminal
+export default Terminal;
