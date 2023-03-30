@@ -4,6 +4,7 @@ export const styleOptions = {
     width: '20vw',
     minWidth:'10rem',
     maxWidth: '15rem',
+    height: '3rem',
     borderRadius: '5px',
     color: 'black',
     fontSize: '0.9rem',

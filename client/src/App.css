@@ -9,8 +9,35 @@
   --accent: #8F43EE;
 }
 
+.dark {
+  background-color: #011627;
+  --primary: #011627;
+  --secondary: #010E1A;
+  --white: #ffffff;
+  --accent: #8F43EE;
+  transition: all 0.4s;
+}
+
+.light {
+  background-color: #e0e0e0;
+  --primary: #fff;
+  --secondary: #e0e0e0;
+  --white: #000;
+  --accent: #8F43EE;
+  transition: all 0.4s;
+}
+
+.light .card {
+  box-shadow: 6px 6px 12px #cacaca,
+    -6px -6px 12px #f6f6f6;
+}
+
+.light .dark-mode-button{
+  box-shadow: 6px 6px 12px #cacaca,
+    -6px -6px 12px #f6f6f6;
+}
+
 body {
-  background-color: var(--primary);
   font-family: 'Inter', sans-serif;
 }
 
@@ -29,6 +56,20 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header-buttons {
+  display: flex;
+}
+
+.dark-mode-button {
+  height: 3rem;
+  width: 3rem;
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--secondary);
+  border: none;
+  cursor: pointer;
 }
 
 .logo {
@@ -104,7 +145,7 @@ body {
   font-size: 1.2rem;
   border-radius: 0.5rem;
   background-color: var(--accent);
-  color: var(--white);
+  color: white;
   border: none;
   font-weight: 600;
   cursor: pointer;
