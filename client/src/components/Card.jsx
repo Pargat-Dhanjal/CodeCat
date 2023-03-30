@@ -11,6 +11,7 @@ function Card({
   input,
   setInput,
   handelCompile,
+  processing,
 }) {
   return (
     <div className="card">
@@ -25,6 +26,7 @@ function Card({
         input={input}
         setInput={setInput}
         handelCompile={handelCompile}
+        processing={processing}
       />
     </div>
   );

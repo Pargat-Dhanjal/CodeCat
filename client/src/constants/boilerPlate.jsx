@@ -5,8 +5,8 @@ export const boilerPlate = [
 console.log('Hello World')`,
   },
   {
-      name: "assembly",
-      value: ` hello-DOS.asm - single-segment, 16-bit "hello world" program
+    name: 'assembly',
+    value: ` hello-DOS.asm - single-segment, 16-bit "hello world" program
       ;
       ; assemble with "nasm -f bin -o hi.com hello-DOS.asm"
       
@@ -21,51 +21,43 @@ console.log('Hello World')`,
           mov  ah, 0x4c     ; "terminate program" sub-function
           int  0x21         ; call dos services
       
-          msg  db 'Hello, World!', 0x0d, 0x0a, '$'   ; $-terminated message`
-    
+          msg  db 'Hello, World!', 0x0d, 0x0a, '$'   ; $-terminated message`,
   },
-  { name:"bash",
-  value:`echo " Hello World "`
-
-  },
+  { name: 'bash', value: `echo " Hello World "` },
   {
     name: 'c',
     value: `
-    #include <stdio.h>
-    
-    int main() {
-        // Write C code here
-        printf("Hello world");
-    
-        return 0;
+#include <stdio.h> 
+  int main() {
+    // Write C code here
+    printf("Hello world");
+    return 0;
     }`,
   },
 
   {
-    name:"cpp",
-    value:`//Write c++ code here
-    #include <iostream>
-
-    int main() {
-        std::cout << "Hello World!";
-        return 0;
-    }`,
-
-
+    name: 'cpp',
+    value: `//Write c++ code here
+#include <iostream>
+using namespace std;
+int main()
+  {
+    cout << "Hello World";
+    return 0;
+  }`,
   },
   {
-    name:"clojure",
-    value:`(ns clojure.examples.hello
+    name: 'clojure',
+    value: `(ns clojure.examples.hello
       (:gen-class))
    (defn hello-world []
       (println "Hello World"))
-   (hello-world)`
-
+   (hello-world)`,
   },
 
   {
-    name:"csharp",
-    value:`using System;
+    name: 'csharp',
+    value: `using System;
 
     public class HelloWorld
     {
@@ -73,103 +65,103 @@ console.log('Hello World')`,
         {
             Console.WriteLine ("Hello Mono World");
         }
-    }`
+    }`,
   },
 
   {
-    name:"cobol",
-    value:`IDENTIFICATION DIVISION.
+    name: 'cobol',
+    value: `IDENTIFICATION DIVISION.
     PROGRAM-ID. HELLO-WORLD.
     PROCEDURE DIVISION.
     DISPLAY 'Hello, world'.
-    STOP RUN.`
+    STOP RUN.`,
   },
 
   {
-    name:"lisp",
-    value:`(write-line "Hello World")`
+    name: 'lisp',
+    value: `(write-line "Hello World")`,
   },
 
   {
-    name:"d",
-    value:``
+    name: 'd',
+    value: ``,
   },
 
   {
-    name:"elixir",
-    value:`IO.puts "Hello, world!"`
+    name: 'elixir',
+    value: `IO.puts "Hello, world!"`,
   },
 
   {
-    name:"erlang",
-    value:`-module(helloworld).
+    name: 'erlang',
+    value: `-module(helloworld).
     -export([start/0]).
     
     start() ->
-        io:fwrite("Hello, world!\n").`
+        io:fwrite("Hello, world!\n").`,
   },
 
   {
-    name:"exe",
-    value:``
+    name: 'exe',
+    value: ``,
   },
 
   {
-    name:"fsharp",
-    value:`printfn "Hello World!"`
+    name: 'fsharp',
+    value: `printfn "Hello World!"`,
   },
 
   {
-    name:"fortan",
-    value:`Program Hello
+    name: 'fortan',
+    value: `Program Hello
     Print *, "Hello World"
-    End Program Hello`
+    End Program Hello`,
   },
 
   {
-    name:"go",
-    value:`package main
+    name: 'go',
+    value: `package main
     import "fmt"
     
     func main() {
       fmt.Println("Hello World!")
-    }`
+    }`,
   },
 
   {
-    name:"groovy",
-    value:`println("Hello world")`
+    name: 'groovy',
+    value: `println("Hello world")`,
   },
 
   {
-    name:"haskell",
-    value:`main = putStrLn "hello world"`
+    name: 'haskell',
+    value: `main = putStrLn "hello world"`,
   },
 
   {
-    name:"java",
-    value:`class HelloWorld {
+    name: 'java',
+    value: `class Main {
       public static void main(String[] args) {
           System.out.println("Hello, World!");
       }
-  }`
+  }`,
   },
 
   {
-    name:"kotlin",
-    value:`fun main() {
+    name: 'kotlin',
+    value: `fun main() {
       println("Hello, World!")
-  }`
+  }`,
   },
 
   {
-    name:"lua",
-    value:`print("Hello World!")`
+    name: 'lua',
+    value: `print("Hello World!")`,
   },
 
   {
-    name:"objectivec",
-    value:`#import <Foundation/Foundation.h>
+    name: 'objectivec',
+    value: `#import <Foundation/Foundation.h>
 
     int main (int argc, const char * argv[])
     {
@@ -178,75 +170,71 @@ console.log('Hello World')`,
        NSLog (@"hello world");
        [pool drain];
        return 0;
-    }`
+    }`,
   },
 
   {
-    name:"ocaml",
-    value:`print_string "Hello world!\n";;`
+    name: 'ocaml',
+    value: `print_string "Hello world!\n";;`,
   },
 
   {
-    name:"octave",
-    value:``
+    name: 'octave',
+    value: ``,
   },
   {
-    name:"pascal",
-    value:`program Hello;
+    name: 'pascal',
+    value: `program Hello;
     begin
       writeln ('Hello World')
     end.
-    `
+    `,
   },
 
   {
-    name:"perl",
-    value:`print "Hello World";`
+    name: 'perl',
+    value: `print "Hello World";`,
   },
 
   {
-    name:"php",
-    value:`echo "Hello World";`
+    name: 'php',
+    value: `echo "Hello World";`,
   },
 
   {
-    name:"text",
-    value:``
+    name: 'text',
+    value: ``,
   },
 
   {
-    name:"prolog",
-    value:`main:-
+    name: 'prolog',
+    value: `main:-
     process,
     halt.
 
 process:-
     write('Hello World').
-:- main.`
+:- main.`,
   },
 
   {
-    name:"python",
-    value:`print("hello world")`
+    name: 'python',
+    value: `print("hello world")`,
   },
 
   {
-    name:"r",
-    value:`print("Hello World")`
+    name: 'r',
+    value: `print("Hello World")`,
   },
 
   {
-    name:"ruby",
-    value:`puts "Hello World"`
+    name: 'ruby',
+    value: `puts "Hello World"`,
   },
   {
-    name:"rust",
-    value:`fn main() {
+    name: 'rust',
+    value: `fn main() {
       println!("Hello World");
-  }`
+  }`,
   },
-
-  
-
-
 ];

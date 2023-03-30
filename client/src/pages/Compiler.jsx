@@ -5,6 +5,7 @@ import { languageOptions } from '../constants/languages';
 import { boilerPlate } from '../constants/boilerPlate';
 import { decode, encode } from 'base-64';
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
 
 const host = import.meta.env.VITE_APP_RAPID_API_HOST;
 const apiKey = import.meta.env.VITE_APP_RAPID_API_KEY;
@@ -15,10 +16,9 @@ function Compiler() {
   const [language, setLanguage] = useState(languageOptions[0]);
   const [customInput, setCustomInput] = useState('');
   const [output, setOutput] = useState(null);
-  const [processing, setProcessing] = useState(null);
+  const [processing, setProcessing] = useState(false);
   const foundItem = boilerPlate.find((code) => code.name == language.value);
-
-  console.log(foundItem);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (foundItem) {
@@ -27,15 +27,14 @@ function Compiler() {
   }, [language]);
 
   const handelCompile = () => {
-    console.log('handelCompile');
     setProcessing(true);
+    // forma data for api req
     const formData = {
       language_id: language.id,
       source_code: encode(code),
       stdin: encode(customInput),
     };
-
-    console.log('formData', formData);
+    // api options
     const options = {
       method: 'POST',
       url: url,
@@ -48,11 +47,10 @@ function Compiler() {
       },
       data: formData,
     };
-
+    // request
     axios
       .request(options)
       .then(function (response) {
-        console.log('res.data', response.data);
         const token = response.data.token;
         checkStatus(token);
       })
@@ -78,6 +76,7 @@ function Compiler() {
         'X-RapidAPI-Key': apiKey,
       },
     };
+    
     try {
       let response = await axios.request(options);
       let statusId = response.data.status?.id;
@@ -88,18 +87,41 @@ function Compiler() {
         return;
       } else {
         setProcessing(false);
-        console.log(`Compiled Successfully!`);
         setOutput(response.data);
+        checkOutput(response.data);
         return;
       }
     } catch (err) {
       console.log('err', err);
+      enqueueSnackbar('An error occurred', {
+        variant: 'warning',
+      });
       setProcessing(false);
     }
   };
 
   function handleLanguage(l) {
     setLanguage(l);
+  }
+
+  function checkOutput(o) {
+    let statusId = o.status?.id;
+     if (statusId === 3) {
+      enqueueSnackbar('Compiled Succesfully', {
+        variant: 'success',
+      });
+    } else if (statusId === 5) {
+      enqueueSnackbar(
+        'Time Limit Extended',
+        {
+          variant: 'warning',
+        }
+      );
+    } else {
+      enqueueSnackbar('Error', {
+        variant: 'error',
+      });
+    }
   }
 
   return (
@@ -114,6 +136,7 @@ function Compiler() {
           input={customInput}
           setInput={(i) => setCustomInput(i)}
           handelCompile={handelCompile}
+          processing={processing}
         />
       </div>
     </div>

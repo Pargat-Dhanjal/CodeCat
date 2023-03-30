@@ -1,7 +1,10 @@
 import React from 'react';
 import { decode } from 'base-64';
+import { useSnackbar } from 'notistack';
 
-function Output({ output, handelCompile }) {
+function Output({ output, handelCompile, processing }) {
+  const { enqueueSnackbar } = useSnackbar();
+
   const getOutput = () => {
     let statusId = output?.status?.id;
 
@@ -11,7 +14,7 @@ function Output({ output, handelCompile }) {
       );
     } else if (statusId === 3) {
       return (
-        <pre style={{color: 'lawngreen'}}>
+        <pre style={{ color: 'lawngreen' }}>
           {decode(output.stdout) !== null ? `${decode(output.stdout)}` : null}
         </pre>
       );
@@ -26,8 +29,12 @@ function Output({ output, handelCompile }) {
     <div className="output">
       <div className="output-header">
         <h3 className="output-title">Output</h3>
-        <button className="output-button" onClick={handelCompile}>
-          Run
+        <button className="run-button" onClick={handelCompile}>
+          {processing ? (
+            <img src="/Loading.svg" alt="..." className="loading" />
+          ) : (
+            'Run'
+          )}
         </button>
       </div>
       <div className="output-terminal">
