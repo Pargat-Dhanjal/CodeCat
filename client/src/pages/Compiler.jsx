@@ -7,9 +7,9 @@ import { decode, encode } from 'base-64';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 
-const host = import.meta.env.VITE_APP_RAPID_API_HOST;
-const apiKey = import.meta.env.VITE_APP_RAPID_API_KEY;
-const url = import.meta.env.VITE_APP_RAPID_API_URL;
+const host = process.env.VITE_APP_RAPID_API_HOST;
+const apiKey = process.env.VITE_APP_RAPID_API_KEY;
+const url = process.env.VITE_APP_RAPID_API_URL;
 
 function Compiler() {
   const [code, setCode] = useState('');
