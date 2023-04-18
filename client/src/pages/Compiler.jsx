@@ -3,13 +3,13 @@ import Header from '../components/Header';
 import Card from '../components/Card';
 import { languageOptions } from '../constants/languages';
 import { boilerPlate } from '../constants/boilerPlate';
-import { decode, encode } from 'base-64';
+import { encode } from 'base-64';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 
-const host = process.env.VITE_APP_RAPID_API_HOST;
-const apiKey = process.env.VITE_APP_RAPID_API_KEY;
-const url = process.env.VITE_APP_RAPID_API_URL;
+const host = process.env.REACT_APP_RAPID_API_HOST;
+const apiKey = process.env.REACT_APP_RAPID_API_KEY;
+const url = process.env.REACT_APP_RAPID_API_URL;
 
 function Compiler() {
   const [code, setCode] = useState('');
@@ -17,7 +17,7 @@ function Compiler() {
   const [customInput, setCustomInput] = useState('');
   const [output, setOutput] = useState(null);
   const [processing, setProcessing] = useState(false);
-  const foundItem = boilerPlate.find((code) => code.name == language.value);
+  const foundItem = boilerPlate.find((code) => code.name === language.value);
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
