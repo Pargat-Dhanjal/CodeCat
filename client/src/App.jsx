@@ -1,7 +1,8 @@
-import Compiler from './pages/Compiler';
 import './App.css';
+import { RouterProvider } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
-import { createContext, useState } from 'react';
+import { useState } from 'react';
+import router from './config/router';
 import { ThemeContext } from './contexts/ThemeContext';
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <SnackbarProvider maxSnack={3} autoHideDuration={2000}>
         <div className={theme ? 'dark' : 'light'}>
-          <Compiler />
+          <RouterProvider router={router} />
         </div>
       </SnackbarProvider>
     </ThemeContext.Provider>
