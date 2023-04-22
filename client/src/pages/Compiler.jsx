@@ -11,20 +11,38 @@ const host = process.env.REACT_APP_RAPID_API_HOST;
 const apiKey = process.env.REACT_APP_RAPID_API_KEY;
 const url = process.env.REACT_APP_RAPID_API_URL;
 
+// function for getLanguages
+function getLanguages(){
+  const languageFromStorage = localStorage.getItem('language')
+  if(languageFromStorage)
+    return JSON.parse(languageFromStorage)
+  else{
+    localStorage.setItem('language', JSON.stringify(languageOptions[0]))
+    return languageOptions[0]
+  }
+}
+
+
+const boilerPlateFromStorage = localStorage.getItem('boilerPlate')
+  ? JSON.parse(localStorage.getItem('boilerPlate'))
+  : boilerPlate;
+
 function Compiler() {
   const [code, setCode] = useState('');
-  const [language, setLanguage] = useState(languageOptions[0]);
+  const [language, setLanguage] = useState(getLanguages);
   const [customInput, setCustomInput] = useState('');
   const [output, setOutput] = useState(null);
   const [processing, setProcessing] = useState(false);
-  const foundItem = boilerPlate.find((code) => code.name === language.value);
+  const foundItem = boilerPlateFromStorage.find(
+    (lang) => lang.name === language.value
+  );
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (foundItem) {
       setCode(foundItem.value);
     }
-  }, [language]);
+  }, [foundItem, language]);
 
   const handelCompile = () => {
     setProcessing(true);
@@ -76,7 +94,7 @@ function Compiler() {
         'X-RapidAPI-Key': apiKey,
       },
     };
-    
+
     try {
       let response = await axios.request(options);
       let statusId = response.data.status?.id;
@@ -102,25 +120,32 @@ function Compiler() {
 
   function handleLanguage(l) {
     setLanguage(l);
+    localStorage.setItem('language', JSON.stringify(l));
   }
 
   function checkOutput(o) {
     let statusId = o.status?.id;
-     if (statusId === 3) {
+    if (statusId === 3) {
       enqueueSnackbar('Compiled Succesfully', {
         variant: 'success',
       });
     } else if (statusId === 5) {
-      enqueueSnackbar(
-        'Time Limit Extended',
-        {
-          variant: 'warning',
-        }
-      );
+      enqueueSnackbar('Time Limit Extended', {
+        variant: 'warning',
+      });
     } else {
       enqueueSnackbar('Error', {
         variant: 'error',
       });
+    }
+  }
+
+  function handelCode(c) {
+    setCode(c);
+    let foundItem = boilerPlate.find((lang) => lang.name === language.value);
+    if (foundItem) {
+      foundItem.value = c;
+      localStorage.setItem('boilerPlate', JSON.stringify(boilerPlate));
     }
   }
 
@@ -131,7 +156,7 @@ function Compiler() {
         <Card
           language={language.value}
           code={code}
-          handelChange={(value) => setCode(value)}
+          handelChange={handelCode}
           output={output}
           input={customInput}
           setInput={(i) => setCustomInput(i)}
