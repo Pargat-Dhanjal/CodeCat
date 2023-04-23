@@ -33,17 +33,16 @@ function Login() {
             style={{
               position: 'absolute',
               width: '40rem',
-              marginLeft: '10rem',
             }}
           />
           <InfoBox
             title="Build anything with zero setup"
             text="Instantly start and rapidly develop projects in any programming language "
-            styles={{position: 'absolute', bottom: '10%', left: '20%'}}
+            styles={{position: 'absolute', bottom: '10%', left: '10%'}}
           />
         </div>
         <div className="wrapper">
-          <div style={{width : '60%', height: '80%'}}>
+          <div style={{width : '60%'}}>
           <LoginForm />
           </div>
         </div>

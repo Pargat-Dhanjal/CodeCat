@@ -238,8 +238,51 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
   text-align: center;
+}
+
+.auth-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1.41489px solid rgba(255, 255, 255, 0.05);
+  border-radius: 11.3191px;
+  padding: 1rem 2.5rem;
+}
+
+.login-input {
+  background: #120E19;
+  border: 1.3px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  padding: 1.2rem 1rem;
+  width: 100%;
+  color: whitesmoke;
+  margin-top: 1.5rem;
+}
+
+.login-input:focus {
+  outline: none;
+}
+
+.login-btn {
+  background: 'white';
+  border-radius: 0.5rem;
+  border: none;
+  color: black;
+  padding: 1rem 2rem;
+  width: 100%;
+  font-weight: 500;
+  margin-top: 2rem;
+}
+
+.switch-form-btn {
+  background: transparent;
+
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);;
+  color: rgba(255, 255, 255, 0.6);;
+  padding: 1rem 2rem;
+  width: 100%;
+  font-weight: 500;
+  margin-top: 2rem;
 }
 
 @media only screen and (max-width: 720px) {
