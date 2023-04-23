@@ -21,7 +21,7 @@ function Login() {
         />
       </div>
       <div className="wrapper">
-        <div className="wrapper" style={{ flexDirection: 'column' }}>
+        <div className="wrapper left" style={{ flexDirection: 'column' }}>
           <InfoBox
             title="Introducing CodeCat-Online Compiler"
             text="Make something great."
@@ -42,7 +42,7 @@ function Login() {
           />
         </div>
         <div className="wrapper">
-          <div style={{width : '60%'}}>
+          <div className='right'>
           <LoginForm />
           </div>
         </div>
