@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Card from '../components/Card';
+import Header from '../components/Compiler/Header'
+import Card from '../components/Compiler/Card';
 import { languageOptions } from '../constants/languages';
 import { boilerPlate } from '../constants/boilerPlate';
 import { encode } from 'base-64';
@@ -12,16 +12,14 @@ const apiKey = process.env.REACT_APP_RAPID_API_KEY;
 const url = process.env.REACT_APP_RAPID_API_URL;
 
 // function for getLanguages
-function getLanguages(){
-  const languageFromStorage = localStorage.getItem('language')
-  if(languageFromStorage)
-    return JSON.parse(languageFromStorage)
-  else{
-    localStorage.setItem('language', JSON.stringify(languageOptions[0]))
-    return languageOptions[0]
+function getLanguages() {
+  const languageFromStorage = localStorage.getItem('language');
+  if (languageFromStorage) return JSON.parse(languageFromStorage);
+  else {
+    localStorage.setItem('language', JSON.stringify(languageOptions[0]));
+    return languageOptions[0];
   }
 }
-
 
 const boilerPlateFromStorage = localStorage.getItem('boilerPlate')
   ? JSON.parse(localStorage.getItem('boilerPlate'))
@@ -150,7 +148,7 @@ function Compiler() {
   }
 
   return (
-    <div className="compiler">
+    <div className="main">
       <Header handleLanguage={handleLanguage} />
       <div className="wrapper">
         <Card

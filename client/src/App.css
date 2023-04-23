@@ -32,7 +32,7 @@
     -6px -6px 12px #f6f6f6;
 }
 
-.light .dark-mode-button{
+.light .dark-mode-button {
   box-shadow: 6px 6px 12px #cacaca,
     -6px -6px 12px #f6f6f6;
 }
@@ -41,7 +41,7 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.compiler {
+.main {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -190,8 +190,60 @@ body {
   outline: none;
 }
 
+/* Login */
+
+.snapshot {
+  position: absolute;
+  width: 45rem;
+  left: -10rem;
+}
+
+.box {
+  z-index: 10;
+  padding: 0.2rem;
+  background: linear-gradient(90.56deg, #27061A 0%, #FF6363 29.69%, #9B4DFF 52.6%, #100321 98.44%);
+  border-radius: 1rem;
+  color: white;
+}
+
+.inner-box {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.glass {
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+}
+
+.login-title {
+  background: linear-gradient(45deg, #F83A3A 10%, #F13DD4 50%, #7000FF 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-align: center;
+}
+
 @media only screen and (max-width: 720px) {
-  .compiler {
+  .main {
     height: auto;
   }
 
@@ -204,6 +256,7 @@ body {
 
   .header {
     padding: 1rem;
+
   }
 
   .code-editor {

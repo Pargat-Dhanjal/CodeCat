@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import LanguagesDropdown from './LanguagesDropdown';
-import { ThemeContext } from '../contexts/ThemeContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
+import { RiSunFill, RiMoonFill } from 'react-icons/ri';
 
 function Header({ handleLanguage }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -15,11 +16,7 @@ function Header({ handleLanguage }) {
       />
       <div className="header-buttons">
         <button className="dark-mode-button" onClick={toggleTheme}>
-          <img
-            src={`/` + (theme ? 'dark' : 'light') + 'mode.svg'}
-            alt="light/dark"
-            style={{ fill: theme ? 'white' : 'black' }}
-          />
+          {theme ? <RiSunFill style={{ fill: 'white' }} size={30} /> : <RiMoonFill style={{ fill: 'black' }} size={30} />}
         </button>
         <LanguagesDropdown handleLanguage={handleLanguage} />
       </div>

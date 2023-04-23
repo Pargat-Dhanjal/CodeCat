@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Editor, { loader } from '@monaco-editor/react';
-import { ThemeContext } from '../contexts/ThemeContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 function CodeEditor({ theme, language, code, handelChange }) {
   const { theme: darkTheme } = useContext(ThemeContext);
@@ -16,7 +16,7 @@ function CodeEditor({ theme, language, code, handelChange }) {
       <Editor
         height="100%"
         width="100%"
-        theme={darkTheme? 'dark' : 'light'}
+        theme={darkTheme ? 'dark' : 'light'}
         language={language || 'java'}
         defaultValue="//Write your code here..."
         value={code}

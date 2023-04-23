@@ -1,7 +1,7 @@
 import React from 'react';
 import CodeEditor from './CodeEditor';
 import Terminal from './Terminal';
-import dark from '../lib/defineTheme';
+import dark from '../../lib/defineTheme';
 
 function Card({
   language,
