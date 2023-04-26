@@ -7,20 +7,37 @@ import LoginInput from './LoginInput';
 import LoginBtn from './LoginBtn';
 import SwitchForm from './SwitchForm';
 
-function LoginForm() {
+function LoginForm({ emailValue, emailOnChange, passOnChange, passValue , onSubmit , googleAuth}) {
   return (
-    <form className="glass" style={{color: 'rgba(255, 255, 255, 0.4)'}}>
+    <div className="glass" style={{ color: 'rgba(255, 255, 255, 0.4)' }}>
       <LoginTitle title="Welcome Back" />
-      <div style={{width: '100%', display : 'flex' , justifyContent : 'space-around' , margin : '2rem 0'}}>
-        <AuthBtn icon={<FcGoogle size={25} />} />
-        <AuthBtn icon={<BsGithub size={25} style={{fill : 'white'}} />} />
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-around',
+          margin: '2rem 0',
+        }}
+      >
+        <AuthBtn icon={<FcGoogle size={25} onClick={googleAuth} />} />
+        <AuthBtn icon={<BsGithub size={25} style={{ fill: 'white' }} />} />
       </div>
       <p style={{ textAlign: 'center' }}>or</p>
-      <LoginInput type='email' placeholder='Email address' />
-      <LoginInput type='password' placeholder='Password' />
-      <LoginBtn text='Log in' onClick={() => console.log('Log-in')} />
-      <SwitchForm text='Don’t have an account? Sign up here' />
-    </form>
+      <LoginInput
+        type="email"
+        placeholder="Email address"
+        value={emailValue}
+        onChange={emailOnChange}
+      />
+      <LoginInput
+        type="password"
+        placeholder="Password"
+        value={passValue}
+        onChange={passOnChange}
+      />
+      <LoginBtn text="Log in" onClick={onSubmit} />
+      <SwitchForm text="Don’t have an account? Sign up here" />
+    </div>
   );
 }
 

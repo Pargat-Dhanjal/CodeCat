@@ -12,6 +12,8 @@ function App() {
     setTheme(!theme);
   }
 
+  document.body.style.backgroundColor = theme? '#011627' : '#e0e0e0';
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <SnackbarProvider maxSnack={3} autoHideDuration={2000}>
