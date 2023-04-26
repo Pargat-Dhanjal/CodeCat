@@ -9,7 +9,7 @@ const AuthChecker = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user && !loading) {
+    if (!user) {
       navigate('/login');
     }
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -25,9 +25,14 @@ const AuthChecker = () => {
           width: '100vw',
         }}
       >
-        <img src="/Loading.svg" alt="..." className="loading" style={{
+        <img
+          src="/Loading.svg"
+          alt="..."
+          className="loading"
+          style={{
             height: '5rem',
-        }} />
+          }}
+        />
       </div>
     );
   else return <Outlet />;
