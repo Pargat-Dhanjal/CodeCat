@@ -203,6 +203,13 @@ body {
   box-shadow: 0px 0px 5px 0px var(--accent);
 }
 
+.snapshot{
+  -webkit-box-shadow: 0px 0px 15px 0px var(--accent);
+  -moz-box-shadow: 0px 0px 15px 0px var(--accent);
+  box-shadow: 0px 0px 15px 0px var(--accent);
+  border-radius: 1rem;
+}
+
 .login-title {
   color: var(--white);
   text-align: center;
@@ -231,10 +238,14 @@ body {
   width: 100%;
   color: whitesmoke;
   margin-top: 1.5rem;
+  transition: all 0.5s;
 }
 
 .login-input:focus {
   outline: none;
+  -webkit-box-shadow: 0px 0px 15px 0px var(--accent);
+  -moz-box-shadow: 0px 0px 15px 0px var(--accent);
+  box-shadow: 0px 0px 15px 0px var(--accent);
 }
 
 .login-btn {

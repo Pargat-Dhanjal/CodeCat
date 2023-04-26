@@ -3,7 +3,7 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
   getAuth,
-  signInWithRedirect,
+  signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -29,7 +29,7 @@ const githubProvider = new GithubAuthProvider();
 
 const signInWithGoogle = async () => {
   try {
-    const res = await signInWithRedirect(auth, googleProvider);
+    const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
     const q = query(collection(db, 'users'), where('uid', '==', user.uid));
     const docs = await getDocs(q);
@@ -49,7 +49,7 @@ const signInWithGoogle = async () => {
 
 const signInWithGithub = async () => {
   try {
-    const res = await signInWithRedirect(auth, githubProvider);
+    const res = await signInWithPopup(auth, githubProvider);
     console.log(res);
     const user = res.user;
     const q = query(collection(db, 'users'), where('uid', '==', user.uid));

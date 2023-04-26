@@ -35,7 +35,7 @@ function Login() {
       </div>
       <div className="wrapper">
         <div className="wrapper left" style={{ padding: '1rem' }}>
-          <img src="/snap.svg" alt="snapshot" style={{ width: '95%' }} />
+          <img src="/snap.svg" alt="snapshot" style={{ width: '95%' }}  className='snapshot' />
         </div>
         <div
           className="wrapper right"
