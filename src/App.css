@@ -198,6 +198,9 @@ body {
   padding: 2rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
+  -webkit-box-shadow: 0px 0px 5px 0px var(--accent);
+  -moz-box-shadow: 0px 0px 5px 0px var(--accent);
+  box-shadow: 0px 0px 5px 0px var(--accent);
 }
 
 .login-title {
@@ -210,6 +213,14 @@ body {
   border: 1.41489px solid rgba(255, 255, 255, 0.05);
   border-radius: 11.3191px;
   padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.auth-btn:hover {
+  -webkit-box-shadow: 0px 0px 50px 0px var(--accent);
+  -moz-box-shadow: 0px 0px 50px 0px var(--accent);
+  box-shadow: 0px 0px 50px 0px var(--accent);
 }
 
 .login-input {
@@ -241,8 +252,10 @@ body {
 .switch-form-btn {
   background: transparent;
   border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);;
-  color: rgba(255, 255, 255, 0.6);;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  ;
+  color: rgba(255, 255, 255, 0.6);
+  ;
   padding: 1rem 2rem;
   width: 100%;
   font-weight: 500;
@@ -263,7 +276,7 @@ body {
   }
 
   .header {
-    padding:0 1rem;
+    padding: 0 1rem;
   }
 
   .code-editor {
@@ -282,11 +295,11 @@ body {
     height: 3rem;
   }
 
-  .right{
+  .right {
     width: 95%;
   }
-  
-  .left{
+
+  .left {
     display: none;
   }
 }

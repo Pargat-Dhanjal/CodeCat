@@ -7,7 +7,7 @@ import LoginInput from './LoginInput';
 import LoginBtn from './LoginBtn';
 import SwitchForm from './SwitchForm';
 
-function LoginForm({ emailValue, emailOnChange, passOnChange, passValue , onSubmit , googleAuth}) {
+function LoginForm({ emailValue, emailOnChange, passOnChange, passValue , onSubmit , googleAuth, githubAuth}) {
   return (
     <div className="glass" style={{ color: 'rgba(255, 255, 255, 0.4)' }}>
       <LoginTitle title="Welcome Back" />
@@ -20,7 +20,7 @@ function LoginForm({ emailValue, emailOnChange, passOnChange, passValue , onSubm
         }}
       >
         <AuthBtn icon={<FcGoogle size={25} onClick={googleAuth} />} />
-        <AuthBtn icon={<BsGithub size={25} style={{ fill: 'white' }} />} />
+        <AuthBtn icon={<BsGithub size={25} style={{ fill: 'white' }} onClick={githubAuth} />} />
       </div>
       <p style={{ textAlign: 'center' }}>or</p>
       <LoginInput

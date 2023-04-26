@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import LoginForm from '../components/Login/LoginForm';
 import { useNavigate } from 'react-router-dom';
-import { auth, registerWithEmailAndPassword, signInWithGoogle } from '../config/firebase';
+import {
+  auth,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+  signInWithGithub,
+} from '../config/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Login() {
@@ -19,7 +24,7 @@ function Login() {
   }, [user, loading]);
 
   return (
-    <div className="main">
+    <div className="main" style={{height : '100vh'}}>
       <div className="header">
         <img
           src="/logo.svg"
@@ -30,17 +35,30 @@ function Login() {
       </div>
       <div className="wrapper">
         <div className="wrapper left" style={{ padding: '1rem' }}>
-          <img src="/snap.png" alt="snapshot" style={{ width: '95%' }} />
+          <img src="/snap.svg" alt="snapshot" style={{ width: '95%' }} />
         </div>
-        <div className="wrapper right" style={{ padding: '1rem' }}>
+        <div
+          className="wrapper right"
+          style={{
+            padding: '1rem',
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            alignSelf: 'center',
+          }}
+        >
           <div>
             <LoginForm
               emailValue={email}
               passValue={pass}
               emailOnChange={(e) => setEmail(e.target.value)}
               passOnChange={(e) => setPass(e.target.value)}
-              onSubmit={(e) => registerWithEmailAndPassword('pargat',email, pass)}
+              onSubmit={(e) =>
+                registerWithEmailAndPassword('pargat', email, pass)
+              }
               googleAuth={signInWithGoogle}
+              githubAuth={signInWithGithub}
             />
           </div>
         </div>
