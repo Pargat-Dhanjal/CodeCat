@@ -65,6 +65,9 @@ body {
 .dark-mode-button {
   height: 3rem;
   width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 1rem;
   border-radius: 0.5rem;
   background-color: var(--secondary);
