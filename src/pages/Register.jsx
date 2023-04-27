@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import LoginForm from '../components/Login/LoginForm';
+import RegisterForm from '../components/Login/RegisterForm';
 import { useNavigate } from 'react-router-dom';
 import {
   auth,
-  logInWithEmailAndPassword,
+  registerWithEmailAndPassword,
   signInWithGoogle,
   signInWithGithub,
 } from '../config/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loading from '../components/Loader';
 
-function Login() {
+function Register() {
   const navigate = useNavigate();
   const [details, setDetails] = useState({
+    name: '',
     email: '',
-    password: '',
+    password1: '',
+    password2: '',
   });
   const [user, loading, error] = useAuthState(auth);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name,value)
     setDetails({
       ...details,
       [name]: value,
@@ -63,13 +66,18 @@ function Login() {
             }}
           >
             <div>
-              <LoginForm
+              <RegisterForm
                 emailValue={details.email}
-                passValue={details.password}
-                emailOnChange={handleChange}
-                passOnChange={handleChange}
+                pass1Value={details.password1}
+                nameValue={details.name}
+                pass2Value={details.password2}
+                handelChange={handleChange}
                 onSubmit={(e) =>
-                  logInWithEmailAndPassword(details.email, details.password)
+                  registerWithEmailAndPassword(
+                    details.name,
+                    details.email,
+                    details.password2
+                  )
                 }
                 googleAuth={signInWithGoogle}
                 githubAuth={signInWithGithub}
@@ -81,4 +89,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

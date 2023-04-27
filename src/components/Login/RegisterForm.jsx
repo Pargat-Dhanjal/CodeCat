@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AuthBtn from './AuthBtn';
 import LoginTitle from './LoginTitle';
 import { BsGithub } from 'react-icons/bs';
@@ -7,21 +7,31 @@ import LoginInput from './LoginInput';
 import LoginBtn from './LoginBtn';
 import SwitchForm from './SwitchForm';
 
-function LoginForm({
+function RegisterForm({
   emailValue,
-  emailOnChange,
-  passOnChange,
-  passValue,
+  handelChange,
+  pass1Value,
   onSubmit,
   googleAuth,
   githubAuth,
+  nameValue,
+  pass2Value,
 }) {
+  const [valid, setvalid] = useState();
+
+  useEffect(() => {
+    setvalid(false);
+    if (pass1Value === pass2Value) {
+      setvalid(true);
+    }
+  }, [pass1Value, pass2Value]);
+
   return (
     <div
       className="glass"
       style={{ color: 'rgba(255, 255, 255, 0.4)', maxWidth: '25rem' }}
     >
-      <LoginTitle title="Welcome Back" />
+      <LoginTitle title="Let's Register" />
       <div
         style={{
           width: '100%',
@@ -43,23 +53,37 @@ function LoginForm({
       </div>
       <p style={{ textAlign: 'center' }}>or</p>
       <LoginInput
+        type="text"
+        placeholder="Name"
+        name="name"
+        value={nameValue}
+        onChange={handelChange}
+      />
+      <LoginInput
         type="email"
-        placeholder="Email address"
         name="email"
+        placeholder="Email address"
         value={emailValue}
-        onChange={emailOnChange}
+        onChange={handelChange}
       />
       <LoginInput
         type="password"
-        name="password"
-        placeholder="Password"
-        value={passValue}
-        onChange={passOnChange}
+        name="password1"
+        placeholder="Enter Password"
+        value={pass1Value}
+        onChange={handelChange}
       />
-      <LoginBtn text="Log in" onClick={onSubmit} />
-      <SwitchForm text="Don’t have an account? Sign up here" to="/register" />
+      <LoginInput
+        type="password"
+        name="password2"
+        placeholder="Confirm Password"
+        value={pass2Value}
+        onChange={handelChange}
+      />
+      <LoginBtn text="Register" onClick={(valid) => onSubmit()} />
+      <SwitchForm text="Don’t have an account? Log in here" to="/login" />
     </div>
   );
 }
 
-export default LoginForm;
+export default RegisterForm;

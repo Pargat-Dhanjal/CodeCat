@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-function LoginInput({type , placeholder,value,onChange}) {
+function LoginInput({ type, placeholder, value, onChange, name }) {
   return (
-    <input className='login-input' type={type} placeholder={placeholder} value={value}  onChange={onChange} />
-  )
+    <input
+      className="login-input"
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      name={name}
+    />
+  );
 }
 
-export default LoginInput
+export default LoginInput;
