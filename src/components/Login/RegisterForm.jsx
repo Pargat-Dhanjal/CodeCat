@@ -81,7 +81,7 @@ function RegisterForm({
         onChange={handelChange}
       />
       <LoginBtn text="Register" onClick={(valid) => onSubmit()} />
-      <SwitchForm text="Don’t have an account? Log in here" to="/login" />
+      <SwitchForm text="Have an account? Log in here" to="/login" />
     </div>
   );
 }
