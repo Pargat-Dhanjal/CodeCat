@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const AuthChecker = () => {
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,28 +14,7 @@ const AuthChecker = () => {
     }
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (loading)
-    return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100vh',
-          width: '100vw',
-        }}
-      >
-        <img
-          src="/Loading.svg"
-          alt="..."
-          className="loading"
-          style={{
-            height: '5rem',
-          }}
-        />
-      </div>
-    );
-  else return <Outlet />;
+  return <Outlet />;
 };
 
 export default AuthChecker;

@@ -9,7 +9,7 @@ import SwitchForm from './SwitchForm';
 
 function LoginForm({ emailValue, emailOnChange, passOnChange, passValue , onSubmit , googleAuth, githubAuth}) {
   return (
-    <div className="glass" style={{ color: 'rgba(255, 255, 255, 0.4)' }}>
+    <div className="glass" style={{ color: 'rgba(255, 255, 255, 0.4)' , maxWidth:'25rem' }}>
       <LoginTitle title="Welcome Back" />
       <div
         style={{

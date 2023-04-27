@@ -203,11 +203,19 @@ body {
   box-shadow: 0px 0px 5px 0px var(--accent);
 }
 
-.snapshot{
-  -webkit-box-shadow: 0px 0px 15px 0px var(--accent);
-  -moz-box-shadow: 0px 0px 15px 0px var(--accent);
-  box-shadow: 0px 0px 15px 0px var(--accent);
+.snapshot {
+  animation: glow 3s ease-in-out infinite alternate;
   border-radius: 1rem;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 3px var(--accent), 0 0 5px var(--accent), 0 0 10px var(--accent), 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent);
+  }
+
+  to {
+    box-shadow: 0 0 1px var(--accent);
+  }
 }
 
 .login-title {
@@ -221,7 +229,7 @@ body {
   border-radius: 11.3191px;
   padding: 1rem 2.5rem;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 
 .auth-btn:hover {
@@ -271,6 +279,7 @@ body {
   width: 100%;
   font-weight: 500;
   margin-top: 2rem;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 720px) {
