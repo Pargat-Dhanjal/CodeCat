@@ -6,7 +6,6 @@ import Subtitle from './Subtitle.jsx';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { BsGithub } from 'react-icons/bs';
 
-
 function Profile() {
   const [user, loading] = useAuthState(auth);
   const username = user?.displayName;
@@ -33,7 +32,7 @@ function Profile() {
   }, [uid]);
 
   return (
-    <div className="profile-card">
+    <div className="card" style={{flexDirection : 'column' , height : 'auto'}}>
       <img src={profilePic} alt="Profile Pic" className="profile-pic" />
       <LoginTitle title={username} />
       <Subtitle text={email} />
@@ -42,8 +41,8 @@ function Profile() {
       ) : (
         <>
           <Subtitle
-            text={userDetails ? userDetails.login : 'None'}
-            icon={<BsGithub size={20} />}
+            text={userDetails?.login ? userDetails.login : '-'}
+            icon={<BsGithub size={20} fill='#fff' />}
           />
         </>
       )}

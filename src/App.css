@@ -287,22 +287,64 @@ body {
 
 /* Profile Page */
 
-.profile-card {
-  background: rgba(217, 217, 217, 0.1);
-  border-radius: 1rem;
-  padding: 1rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
-  color: var(--white);
-}
-
-.profile-pic{
+.profile-pic {
   height: 8rem;
   border-radius: 50%;
   margin-bottom: 1rem;
+}
+
+.stats {
+  width: 30vw;
+  margin: 1rem;
+}
+
+/* MY FILES */
+
+.my-files {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: var(--secondary);
+  color: var(--white);
+  margin:0 0.7rem 0.7rem 0rem;
+  border-radius: 1rem;
+  width: auto;
+  min-width: 15rem;
+}
+
+.add-btn {
+  background-color: var(--accent);
+  color: var(--white);
+  height: 3rem;
+  width: 3rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.file {
+  padding: 1rem;
+  background-color: var(--secondary);
+  color: var(--white);
+  margin:0 0.7rem 0.7rem 0rem;
+  border-radius: 1rem;
+  width: auto;
+  min-width: 15rem;
+}
+
+.file-date {
+  font-size: 0.8rem;
+  color: var(--white);
+  margin-top: 1rem;
 }
 
 @media only screen and (max-width: 720px) {

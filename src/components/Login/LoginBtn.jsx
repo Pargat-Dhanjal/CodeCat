@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function LoginBtn({text , onClick, styles}) {
+function LoginBtn({ text, onClick, styles }) {
   return (
-    <button onClick={onClick} className='login-btn' style={styles}>
-        {text}
+    <button onClick={onClick} className="login-btn" style={styles}>
+      {text}
     </button>
-  )
+  );
 }
 
-export default LoginBtn
+export default LoginBtn;

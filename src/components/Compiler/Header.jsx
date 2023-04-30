@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import LanguagesDropdown from './LanguagesDropdown';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { RiSunFill, RiMoonFill } from 'react-icons/ri';
-import { MdLogout } from 'react-icons/md';
-import { logout } from '../../config/firebase';
 
 function Header({ handleLanguage }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -25,14 +23,6 @@ function Header({ handleLanguage }) {
           )}
         </button>
         <LanguagesDropdown handleLanguage={handleLanguage} />
-        <button
-          className="dark-mode-button"
-          title="Log-out"
-          onClick={logout}
-          style={{ marginRight: 0, marginLeft: '1rem' }}
-        >
-          <MdLogout style={{ fill: 'crimson' }} size={30} />
-        </button>
       </div>
     </div>
   );
