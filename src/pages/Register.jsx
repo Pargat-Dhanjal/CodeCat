@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import RegisterForm from '../components/Login/RegisterForm';
 import { useNavigate } from 'react-router-dom';
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-  signInWithGithub,
-} from '../config/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, registerWithEmailAndPassword } from '../config/firebase';
+import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../components/Loader';
 
 function Register() {
@@ -19,10 +14,12 @@ function Register() {
     password2: '',
   });
   const [user, loading, error] = useAuthState(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [signInWithGithub] = useSignInWithGithub(auth);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name,value)
+    console.log(name, value);
     setDetails({
       ...details,
       [name]: value,
@@ -79,8 +76,8 @@ function Register() {
                     details.password2
                   )
                 }
-                googleAuth={signInWithGoogle}
-                githubAuth={signInWithGithub}
+                googleAuth={() => signInWithGoogle()}
+                githubAuth={() => signInWithGithub()}
               />
             </div>
           </div>

@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import {
   auth,
   logInWithEmailAndPassword,
-  signInWithGoogle,
-  signInWithGithub,
 } from '../config/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle, useSignInWithGithub , useAuthState } from 'react-firebase-hooks/auth';
 import Loading from '../components/Loader';
 
 function Login() {
@@ -17,6 +15,8 @@ function Login() {
     password: '',
   });
   const [user, loading, error] = useAuthState(auth);
+  const [ signInWithGoogle] = useSignInWithGoogle(auth);
+  const [ signInWithGithub] = useSignInWithGithub(auth);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +30,8 @@ function Login() {
     if (user) navigate('/');
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (loading) return <Loading />;
+
+  if (loading || error) return <Loading />;
   else
     return (
       <div className="main" style={{ height: '100vh' }}>
@@ -71,8 +72,8 @@ function Login() {
                 onSubmit={(e) =>
                   logInWithEmailAndPassword(details.email, details.password)
                 }
-                googleAuth={signInWithGoogle}
-                githubAuth={signInWithGithub}
+                googleAuth={() =>signInWithGoogle()}
+                githubAuth={() =>signInWithGithub()}
               />
             </div>
           </div>

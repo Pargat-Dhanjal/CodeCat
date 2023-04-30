@@ -3,6 +3,7 @@ import Compiler from '../pages/Compiler';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import AuthChecker from '../components/AuthChecker';
+import Home from '../pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -10,8 +11,12 @@ const router = createBrowserRouter([
     element: <AuthChecker />,
     children: [
       {
-        path: '/',
+        path: '/home',
         element: <Compiler />,
+      },
+      {
+        path: '/',
+        element: <Home />,
       },
     ],
   },
