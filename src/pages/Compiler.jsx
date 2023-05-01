@@ -1,46 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Compiler/Header'
+import Header from '../components/Compiler/Header';
 import Card from '../components/Compiler/Card';
-import { languageOptions } from '../constants/languages';
 import { boilerPlate } from '../constants/boilerPlate';
 import { encode } from 'base-64';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
+import { useParams } from 'react-router-dom';
+import { db } from '../config/firebase';
+import { doc, updateDoc } from 'firebase/firestore';
 
 const host = process.env.REACT_APP_RAPID_API_HOST;
 const apiKey = process.env.REACT_APP_RAPID_API_KEY;
 const url = process.env.REACT_APP_RAPID_API_URL;
 
-// function for getLanguages
-function getLanguages() {
-  const languageFromStorage = localStorage.getItem('language');
-  if (languageFromStorage) return JSON.parse(languageFromStorage);
-  else {
-    localStorage.setItem('language', JSON.stringify(languageOptions[0]));
-    return languageOptions[0];
-  }
+function getLanguages(i) {
+  let myFiles = JSON.parse(JSON.parse(localStorage.getItem('myFiles'))[i]);
+  return myFiles.language;
 }
 
-const boilerPlateFromStorage = localStorage.getItem('boilerPlate')
-  ? JSON.parse(localStorage.getItem('boilerPlate'))
-  : boilerPlate;
+function getCode(i) {
+  let myFiles = JSON.parse(JSON.parse(localStorage.getItem('myFiles'))[i]);
+  return myFiles.code;
+}
+
+// update myfiles in firebase firestore
+async function updateMyFiles(ref, files) {
+  await updateDoc(ref, {
+    myFiles: files,
+  });
+}
 
 function Compiler() {
-  const [code, setCode] = useState('');
-  const [language, setLanguage] = useState(getLanguages);
+  const { fileId, fireId } = useParams();
+  const docRef = doc(db, 'users', fireId);
+  const [files, setFiles] = useState(
+    JSON.parse(localStorage.getItem('myFiles'))
+  );
+
+  useEffect(() => {
+    updateMyFiles(docRef, files);
+  }, [files]);
+
+  const [code, setCode] = useState(getCode(fileId));
+  const [language, setLanguage] = useState(getLanguages(fileId));
   const [customInput, setCustomInput] = useState('');
   const [output, setOutput] = useState(null);
   const [processing, setProcessing] = useState(false);
-  const foundItem = boilerPlateFromStorage.find(
-    (lang) => lang.name === language.value
-  );
   const { enqueueSnackbar } = useSnackbar();
-
-  useEffect(() => {
-    if (foundItem) {
-      setCode(foundItem.value);
-    }
-  }, [foundItem, language]);
 
   const handelCompile = () => {
     setProcessing(true);
@@ -118,7 +124,18 @@ function Compiler() {
 
   function handleLanguage(l) {
     setLanguage(l);
-    localStorage.setItem('language', JSON.stringify(l));
+    let myFiles = JSON.parse(
+      JSON.parse(localStorage.getItem('myFiles'))[fileId]
+    );
+    myFiles.language = l;
+    let files = JSON.parse(localStorage.getItem('myFiles'));
+    files[fileId] = JSON.stringify(myFiles);
+    setFiles(files);
+    localStorage.setItem('myFiles', JSON.stringify(files));
+    let foundItem = boilerPlate.find((lang) => lang.name === l.value);
+    if (foundItem) {
+      handelCode(foundItem.value);
+    }
   }
 
   function checkOutput(o) {
@@ -140,11 +157,14 @@ function Compiler() {
 
   function handelCode(c) {
     setCode(c);
-    let foundItem = boilerPlate.find((lang) => lang.name === language.value);
-    if (foundItem) {
-      foundItem.value = c;
-      localStorage.setItem('boilerPlate', JSON.stringify(boilerPlate));
-    }
+    let myFiles = JSON.parse(
+      JSON.parse(localStorage.getItem('myFiles'))[fileId]
+    );
+    myFiles.code = c;
+    let files = JSON.parse(localStorage.getItem('myFiles'));
+    files[fileId] = JSON.stringify(myFiles);
+    setFiles(files);
+    localStorage.setItem('myFiles', JSON.stringify(files));
   }
 
   return (

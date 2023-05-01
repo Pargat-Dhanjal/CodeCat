@@ -16,11 +16,12 @@ import {
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from '../components/Loader';
 import { boilerPlate } from '../constants/boilerPlate';
+import { languageOptions } from '../constants/languages';
 
 const defaultFile = {
   name: 'Untitled',
-  code: [boilerPlate],
-  language: 'cpp',
+  code: boilerPlate[4].value,
+  language: JSON.stringify(languageOptions[0]),
   date: new Date().toLocaleDateString(),
 };
 
@@ -36,6 +37,7 @@ function Home() {
   const [userData, setUserData] = useState({});
   const [firebaseUserId, setFirebaseUserId] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  let docRef;
 
   // get firestoreUID and UserData
   useEffect(() => {
@@ -50,15 +52,21 @@ function Home() {
       setIsLoading(false);
     };
     getUsers();
-  }, []);
+  }, [uid]);
 
-  if (isLoading) return <Loader />;
   // document refference
-  const docRef = doc(db, 'users', firebaseUserId);
+  if (isLoading) return <Loader />;
+
+  if (firebaseUserId) {
+    docRef = doc(db, 'users', firebaseUserId);
+  }
 
   // add default file if new user
   if (!userData?.myFiles) {
     addNewFiles(docRef);
+  }
+  if (!localStorage.getItem('myFiles') && !isLoading) {
+    localStorage.setItem('myFiles', [JSON.stringify(userData?.myFiles)]);
   }
 
   return (
@@ -142,7 +150,10 @@ function Home() {
             }}
           >
             <h1>My Files</h1>
-            <MyFiles myFiles={userData.myFiles} firebaseUserId={firebaseUserId} />
+            <MyFiles
+              myFiles={userData.myFiles}
+              firebaseUserId={firebaseUserId}
+            />
           </div>
         </div>
       </div>

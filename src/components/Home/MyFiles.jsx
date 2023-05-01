@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { boilerPlate } from '../../constants/boilerPlate';
 import { updateDoc, doc } from 'firebase/firestore';
 import { db } from '../../config/firebase';
+import { Link } from 'react-router-dom';
+import { languageOptions } from '../../constants/languages';
 
 async function addNewFiles(ref, files) {
   await updateDoc(ref, {
     myFiles: files,
   });
+  localStorage.setItem('myFiles', JSON.stringify(files));
 }
 
 function MyFiles({ myFiles, firebaseUserId }) {
@@ -17,8 +20,8 @@ function MyFiles({ myFiles, firebaseUserId }) {
   const handleAddDiv = (name) => {
     const newFile = JSON.stringify({
       name: [name],
-      code: [boilerPlate],
-      language: 'cpp',
+      code: boilerPlate[4].value,
+      language: (JSON.stringify(languageOptions[0])),
       date: new Date().toLocaleDateString(),
     });
     addNewFiles(docRef, [...files, newFile]);
@@ -30,11 +33,13 @@ function MyFiles({ myFiles, firebaseUserId }) {
       {files.map((file, i) => {
         const details = JSON.parse(file);
         return (
-          <div key={i} className="file">
-            Name: {details.name}
-            <p>Lang : {details.language}</p>
-            <p className="file-date">Date: {details.date}</p>
-          </div>
+          <Link to={`/${firebaseUserId}/${i}`} key={i} style={{ textDecoration: 'none' }}>
+            <div className="file">
+              Name: {details.name}
+              <p>Lang : {details.language.value}</p>
+              <p className="file-date">Date: {details.date}</p>
+            </div>
+          </Link>
         );
       })}
       <div className="add">

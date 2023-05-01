@@ -17,7 +17,7 @@ function Card({
     <div className="card">
       <CodeEditor
         theme={dark}
-        language={language}
+        langxuage={language}
         code={code}
         handelChange={handelChange}
       />

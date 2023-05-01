@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <AuthChecker />,
     children: [
       {
-        path: '/home',
+        path: '/:fireId/:fileId',
         element: <Compiler />,
       },
       {
