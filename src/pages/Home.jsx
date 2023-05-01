@@ -71,7 +71,7 @@ function Home() {
   }
 
   return (
-    <div className="main">
+    <div className="main-display">
       <div className="header" style={{ justifyContent: 'space-between' }}>
         <img
           src="/logo.svg"
@@ -88,6 +88,7 @@ function Home() {
             flexDirection: 'column',
             justifyContent: 'start',
             marginBottom: '1rem',
+            marginTop: '1rem',
           }}
         >
           <Profile github={github} setGithub={setGithub} logout={logout} />

@@ -4,7 +4,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { RiSunFill, RiMoonFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
-function Header({ handleLanguage }) {
+function Header({ handleLanguage, language }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
@@ -29,7 +29,7 @@ function Header({ handleLanguage }) {
             <RiMoonFill style={{ fill: 'black' }} size={30} />
           )}
         </button>
-        <LanguagesDropdown handleLanguage={handleLanguage} />
+        <LanguagesDropdown handleLanguage={handleLanguage} language={language} />
       </div>
     </div>
   );

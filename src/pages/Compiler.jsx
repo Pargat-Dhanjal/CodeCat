@@ -167,8 +167,8 @@ function Compiler() {
   }
 
   return (
-    <div className="main">
-      <Header handleLanguage={handleLanguage} />
+    <div className="main-display">
+      <Header handleLanguage={handleLanguage} language={language} />
       <div className="wrapper">
         <Card
           language={language.value}

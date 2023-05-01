@@ -36,7 +36,7 @@ function Register() {
   if (loading) return <Loading />;
   else
     return (
-      <div className="main" style={{width : 'auto'}}>
+      <div className="main-display" style={{width : 'auto'}}>
         <div className="header">
           <img
             src="/logo.svg"

@@ -33,7 +33,7 @@ function Login() {
   if (loading || error) return <Loading />;
   else
     return (
-      <div className="main" style={{ height: '100vh' }}>
+      <div className="main-display" style={{ height: '100vh' }}>
         <div className="header">
           <img
             src="/logo.svg"

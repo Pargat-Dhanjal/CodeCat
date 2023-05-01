@@ -41,11 +41,12 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.main {
+.main-display {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 .header {
@@ -366,12 +367,12 @@ body {
   cursor: pointer;
 }
 
-.highlight{
+.highlight {
   color: var(--accent);
 }
 
 @media only screen and (max-width: 720px) {
-  .main {
+  .main-display {
     min-height: 100vh;
     height: auto;
     width: auto;
