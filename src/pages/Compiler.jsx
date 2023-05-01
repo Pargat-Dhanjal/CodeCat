@@ -36,17 +36,16 @@ function Compiler() {
   const [files, setFiles] = useState(
     JSON.parse(localStorage.getItem('myFiles'))
   );
-
-  useEffect(() => {
-    updateMyFiles(docRef, files);
-  }, [files]);
-
   const [code, setCode] = useState(getCode(fileId));
-  const [language, setLanguage] = useState(getLanguages(fileId));
+  const [language, setLanguage] = useState(JSON.parse(getLanguages(fileId)));
   const [customInput, setCustomInput] = useState('');
   const [output, setOutput] = useState(null);
   const [processing, setProcessing] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    updateMyFiles(docRef, files);
+  }, [files]);
 
   const handelCompile = () => {
     setProcessing(true);

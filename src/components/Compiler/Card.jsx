@@ -13,11 +13,12 @@ function Card({
   handelCompile,
   processing,
 }) {
+
   return (
     <div className="card">
       <CodeEditor
         theme={dark}
-        langxuage={language}
+        language={language}
         code={code}
         handelChange={handelChange}
       />
