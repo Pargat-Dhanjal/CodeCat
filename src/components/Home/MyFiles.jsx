@@ -1,23 +1,42 @@
 import React, { useState } from 'react';
+import { boilerPlate } from '../../constants/boilerPlate';
+import { updateDoc, doc } from 'firebase/firestore';
+import { db } from '../../config/firebase';
 
-function MyFiles() {
-  const [names, setNames] = useState([]);
+async function addNewFiles(ref, files) {
+  await updateDoc(ref, {
+    myFiles: files,
+  });
+}
+
+function MyFiles({ myFiles, firebaseUserId }) {
+  const docRef = doc(db, 'users', firebaseUserId);
+  const [files, setFiles] = useState(myFiles);
   const [add, setAdd] = useState(false);
 
   const handleAddDiv = (name) => {
-    const newDiv = <p> Name: {name}</p>;
-    setNames([...names, newDiv]);
+    const newFile = JSON.stringify({
+      name: [name],
+      code: [boilerPlate],
+      language: 'cpp',
+      date: new Date().toLocaleDateString(),
+    });
+    addNewFiles(docRef, [...files, newFile]);
+    setFiles([...files, newFile]);
   };
 
   return (
     <div className="my-files">
-      {/* Map over names */}
-      {names.map((name, i) => (
-        <div key={i} className="file">
-            {name}
-            <p className='file-date'>1st May, 2023</p>
-        </div>
-      ))}
+      {files.map((file, i) => {
+        const details = JSON.parse(file);
+        return (
+          <div key={i} className="file">
+            Name: {details.name}
+            <p>Lang : {details.language}</p>
+            <p className="file-date">Date: {details.date}</p>
+          </div>
+        );
+      })}
       <div className="add">
         <input
           type="text"
