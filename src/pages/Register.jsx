@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import RegisterForm from '../components/Login/RegisterForm';
 import { useNavigate } from 'react-router-dom';
-import { auth, registerWithEmailAndPassword } from '../config/firebase';
-import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import {
+  auth,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+  signInWithGithub,
+} from '../config/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import Loading from '../components/Loader';
 
 function Register() {
@@ -14,8 +19,6 @@ function Register() {
     password2: '',
   });
   const [user, loading, error] = useAuthState(auth);
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
-  const [signInWithGithub] = useSignInWithGithub(auth);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +36,7 @@ function Register() {
   if (loading) return <Loading />;
   else
     return (
-      <div className="main" style={{ height: '100vh' }}>
+      <div className="main" style={{width : 'auto'}}>
         <div className="header">
           <img
             src="/logo.svg"
@@ -55,8 +58,6 @@ function Register() {
             className="wrapper right"
             style={{
               padding: '1rem',
-              width: '100%',
-              height: '100%',
               display: 'flex',
               alignItems: 'center',
               alignSelf: 'center',

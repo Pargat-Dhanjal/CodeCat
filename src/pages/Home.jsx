@@ -19,7 +19,7 @@ import { boilerPlate } from '../constants/boilerPlate';
 import { languageOptions } from '../constants/languages';
 
 const defaultFile = {
-  name: 'Untitled',
+  name: 'HelloWorld',
   code: boilerPlate[4].value,
   language: JSON.stringify(languageOptions[0]),
   date: new Date().toLocaleDateString(),
@@ -37,6 +37,7 @@ function Home() {
   const [userData, setUserData] = useState({});
   const [firebaseUserId, setFirebaseUserId] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [github, setGithub] = useState('');
   let docRef;
 
   // get firestoreUID and UserData
@@ -79,77 +80,55 @@ function Home() {
           style={{ margin: 'auto', height: '100%' }}
         />
       </div>
-      <div
-        className="wrapper"
-        style={{ flexDirection: 'row', padding: '1rem' }}
-      >
+      <div className="wrapper wrapper-smol" style={{ padding: '1rem' }}>
         <div
-          className="wrapper"
+          className="wrapper profile"
           style={{
-            width: '30%',
             marginRight: '1rem',
             flexDirection: 'column',
             justifyContent: 'start',
+            marginBottom: '1rem',
           }}
         >
-          <Profile />
-          <LoginBtn
-            text="Logout"
-            styles={{
-              backgroundColor: '#8F43EE',
-              color: '#fff',
-              fontWeight: '600',
-              fontSize: '1rem',
-            }}
-            onClick={logout}
-          />
+          <Profile github={github} setGithub={setGithub} logout={logout} />
         </div>
         <div
           className="wrapper card"
           style={{ width: '100%', height: '100%', flexDirection: 'column' }}
         >
           <div
-            className="wrapper"
+            className="wrapper right-card"
             style={{
-              alignItems: 'start',
-              justifyContent: 'start',
               flexDirection: 'column',
+              height: 'auto',
+              padding: '1rem',
             }}
           >
             <LoginTitle title="Github Stats" />
-            <div
-              className="wrapper"
-              style={{
-                alignItems: 'start',
-                justifyContent: 'start',
-                objectFit: 'scale-down',
-              }}
-            >
+            <div className="wrapper github-stats">
               <img
-                src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=Pargat-Dhanjal&theme=react&hide_border=true&include_all_commits=true&count_private=true"
+                src={`https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=${github}&theme=react&hide_border=true&include_all_commits=true&count_private=true`}
                 alt="Stat 1"
                 className="stats"
               />
               <img
-                src="https://github-readme-streak-stats.herokuapp.com/?user=Pargat-Dhanjal&theme=react&hide_border=true"
+                src={`https://github-readme-streak-stats.herokuapp.com/?user=${github}&theme=react&hide_border=true`}
                 alt="Stat 2"
                 className="stats"
               />
             </div>
           </div>
           <div
-            className="card"
+            className="card right-card"
             style={{
               backgroundColor: '#011627',
-              height: '100%',
               width: '100%',
-              alignItems: 'start',
               color: 'white',
               overflow: 'auto',
               flexDirection: 'column',
             }}
           >
-            <h1>My Files</h1>
+            <LoginTitle title="My Files" />
             <MyFiles
               myFiles={userData.myFiles}
               firebaseUserId={firebaseUserId}

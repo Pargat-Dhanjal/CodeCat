@@ -6,7 +6,7 @@ import Subtitle from './Subtitle.jsx';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { BsGithub } from 'react-icons/bs';
 
-function Profile() {
+function Profile({ github, setGithub, logout }) {
   const [user, loading] = useAuthState(auth);
   const username = user?.displayName;
   const profilePic = user?.photoURL;
@@ -31,8 +31,10 @@ function Profile() {
     fetchUserDetails();
   }, [uid]);
 
+  setGithub(userDetails?.login);
+
   return (
-    <div className="card" style={{flexDirection : 'column' , height : 'auto'}}>
+    <div className="card" style={{ flexDirection: 'column', height: 'auto' }}>
       <img src={profilePic} alt="Profile Pic" className="profile-pic" />
       <LoginTitle title={username} />
       <Subtitle text={email} />
@@ -41,12 +43,22 @@ function Profile() {
       ) : (
         <>
           <Subtitle
-            text={userDetails?.login ? userDetails.login : '-'}
-            icon={<BsGithub size={20} fill='#fff' />}
+            text={userDetails?.login ? github : '-'}
+            icon={<BsGithub size={20} fill="#fff" />}
           />
         </>
       )}
-      <LoginBtn text="Edit Profile" />
+      <LoginBtn
+        text="Logout"
+        styles={{
+          backgroundColor: '#8F43EE',
+          color: '#fff',
+          fontWeight: '600',
+          fontSize: '1rem',
+        }}
+        onClick={logout}
+      />
+      {/* <LoginBtn text="Edit Profile" /> */}
     </div>
   );
 }

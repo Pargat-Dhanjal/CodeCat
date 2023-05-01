@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import {
   auth,
   logInWithEmailAndPassword,
+  signInWithGoogle,
+  signInWithGithub,
 } from '../config/firebase';
-import { useSignInWithGoogle, useSignInWithGithub , useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import Loading from '../components/Loader';
 
 function Login() {
@@ -15,9 +17,6 @@ function Login() {
     password: '',
   });
   const [user, loading, error] = useAuthState(auth);
-  const [ signInWithGoogle] = useSignInWithGoogle(auth);
-  const [ signInWithGithub] = useSignInWithGithub(auth);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDetails({

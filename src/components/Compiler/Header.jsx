@@ -2,20 +2,27 @@ import React, { useContext } from 'react';
 import LanguagesDropdown from './LanguagesDropdown';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { RiSunFill, RiMoonFill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 function Header({ handleLanguage }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <div className="header">
-      <img
-        src={`/logo` + (theme ? '' : 'light') + '.svg'}
-        alt="Logo"
-        className="logo"
-        style={{ fill: theme ? 'white' : 'black' }}
-      />
+      <Link to='/'>
+        <img
+          src={`/logo` + (theme ? '' : 'light') + '.svg'}
+          alt="Logo"
+          className="logo"
+          style={{ fill: theme ? 'white' : 'black' }}
+        />
+      </Link>
       <div className="header-buttons">
-        <button className="dark-mode-button" onClick={toggleTheme} title="Switch theme">
+        <button
+          className="dark-mode-button"
+          onClick={toggleTheme}
+          title="Switch theme"
+        >
           {theme ? (
             <RiSunFill style={{ fill: 'white' }} size={30} />
           ) : (

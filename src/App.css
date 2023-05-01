@@ -275,9 +275,7 @@ body {
   background: transparent;
   border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  ;
   color: rgba(255, 255, 255, 0.6);
-  ;
   padding: 1rem 2rem;
   width: 100%;
   font-weight: 500;
@@ -293,18 +291,32 @@ body {
   margin-bottom: 1rem;
 }
 
+.github-stats {
+  width: 100%;
+}
+
 .stats {
-  width: 30vw;
-  margin: 1rem;
+  padding: 0.5rem;
+  width: 50%;
+  border-radius: 1.5rem;
+}
+
+.profile {
+  width: 30%;
 }
 
 /* MY FILES */
+
+.right-card {
+  align-items: start;
+}
 
 .my-files {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 .add {
@@ -314,7 +326,7 @@ body {
   padding: 1rem;
   background-color: var(--secondary);
   color: var(--white);
-  margin:0 0.7rem 0.7rem 0rem;
+  margin: 0 0.7rem 0.7rem 0rem;
   border-radius: 1rem;
   width: auto;
   min-width: 15rem;
@@ -335,7 +347,7 @@ body {
   padding: 1rem;
   background-color: var(--secondary);
   color: var(--white);
-  margin:0 0.7rem 0.7rem 0rem;
+  margin: 0 0.7rem 0.7rem 0rem;
   border-radius: 1rem;
   width: auto;
   min-width: 15rem;
@@ -344,13 +356,25 @@ body {
 .file-date {
   font-size: 0.8rem;
   color: var(--white);
-  margin-top: 1rem;
+}
+
+.delete-btn {
+  z-index: 10;
+  background-color: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.highlight{
+  color: var(--accent);
 }
 
 @media only screen and (max-width: 720px) {
   .main {
     min-height: 100vh;
     height: auto;
+    width: auto;
   }
 
   .card {
@@ -358,6 +382,17 @@ body {
     height: auto;
     width: 100%;
     padding: 1.1rem;
+  }
+
+  .github-stats {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stats {
+    padding-top: 1rem;
+    width: 100%;
   }
 
   .header {
@@ -386,5 +421,27 @@ body {
 
   .left {
     display: none;
+  }
+
+  .wrapper-smol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile {
+    width: 95%;
+  }
+
+  .right-card {
+    align-items: center;
+  }
+
+  .file {
+    width: 100%;
+  }
+
+  .add {
+    width: 100%;
   }
 }

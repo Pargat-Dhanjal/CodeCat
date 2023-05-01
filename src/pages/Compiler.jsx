@@ -127,7 +127,7 @@ function Compiler() {
     let myFiles = JSON.parse(
       JSON.parse(localStorage.getItem('myFiles'))[fileId]
     );
-    myFiles.language = l;
+    myFiles.language = JSON.stringify(l);
     let files = JSON.parse(localStorage.getItem('myFiles'));
     files[fileId] = JSON.stringify(myFiles);
     setFiles(files);
