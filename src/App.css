@@ -434,6 +434,7 @@ body {
   .profile {
     width: 95%;
     margin: 0;
+    margin-bottom: 1rem;
   }
 
   .right-card {
@@ -447,5 +448,7 @@ body {
 
   .add {
     width: 100%;
+    margin-top: 0.5rem;
+    margin-right:0 ;
   }
 }
