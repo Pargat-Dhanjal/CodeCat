@@ -84,11 +84,8 @@ function Home() {
         <div
           className="wrapper profile"
           style={{
-            marginRight: '1rem',
             flexDirection: 'column',
             justifyContent: 'start',
-            marginBottom: '1rem',
-            marginTop: '1rem',
           }}
         >
           <Profile github={github} setGithub={setGithub} logout={logout} />

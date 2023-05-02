@@ -304,6 +304,7 @@ body {
 
 .profile {
   width: 30%;
+  margin: 1rem 1rem 1rem 0rem;
 }
 
 /* MY FILES */
@@ -432,6 +433,7 @@ body {
 
   .profile {
     width: 95%;
+    margin: 0;
   }
 
   .right-card {
@@ -440,6 +442,7 @@ body {
 
   .file {
     width: 100%;
+    margin: 0;
   }
 
   .add {
