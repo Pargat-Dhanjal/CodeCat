@@ -12,7 +12,7 @@ async function addNewFiles(ref, files) {
   });
 }
 
-function MyFiles({ myFiles, firebaseUserId }) {
+function MyFiles({ myFiles = [], firebaseUserId }) {
   const docRef = doc(db, 'users', firebaseUserId);
   const [files, setFiles] = useState(myFiles);
   const [add, setAdd] = useState(false);

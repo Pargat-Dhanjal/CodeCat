@@ -34,7 +34,7 @@ function Compiler() {
   const { fileId, fireId } = useParams();
   const docRef = doc(db, 'users', fireId);
   const [files, setFiles] = useState(
-    JSON.parse(localStorage.getItem('myFiles'))
+    JSON.parse(localStorage.getItem('myFiles')) || []
   );
   const [code, setCode] = useState(getCode(fileId));
   const [language, setLanguage] = useState(JSON.parse(getLanguages(fileId)));
@@ -44,7 +44,9 @@ function Compiler() {
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    updateMyFiles(docRef, files);
+    if (files) {
+      updateMyFiles(docRef, files);
+    }
   }, [files]);
 
   const handelCompile = () => {
