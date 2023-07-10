@@ -23,9 +23,13 @@ const StyleThemeProvider = (props) => {
       fontWeightRegular: 500,
       fontWeightMedium: 600,
       fontWeightBold: 900,
+      button: {
+        textTransform: 'none',
+        fontWeight: '500'
+      },
     },
     shape: {
-      borderRadius: 10,
+      borderRadius: 5,
     },
   });
 
