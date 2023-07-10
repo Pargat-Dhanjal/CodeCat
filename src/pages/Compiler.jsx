@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Typography } from '@mui/material';
 
 function Compiler() {
-  return (
-    <div>Compiler</div>
-  )
+  return <Typography variant="h1">Compiler</Typography>;
 }
 
-export default Compiler
+export default Compiler;

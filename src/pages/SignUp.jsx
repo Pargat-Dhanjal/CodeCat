@@ -8,12 +8,14 @@ import {
   useAuthState,
 } from 'react-firebase-hooks/auth';
 import { auth } from '../config/firebase';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const [user, loading, error] = useAuthState(auth);
   const [signInWithGithub] = useSignInWithGithub(auth);
   const [signInWithMicrosoft] = useSignInWithMicrosoft(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const navigate = useNavigate();
 
   if (error) {
     return (
@@ -27,11 +29,7 @@ function SignUp() {
   }
   if (user) {
     console.log(user);
-    return (
-      <div>
-        <p>Signed In User: {user.email}</p>
-      </div>
-    );
+    navigate('/compiler');
   }
   return (
     <Box
@@ -57,6 +55,7 @@ function SignUp() {
           signInWithGoogle={() => signInWithGoogle()}
           signInWithGithub={() => signInWithGithub()}
           signInWithMicrosoft={() => signInWithMicrosoft()}
+          handleTryNow={() => navigate('/compiler')}
         />
       </Box>
       <Box
