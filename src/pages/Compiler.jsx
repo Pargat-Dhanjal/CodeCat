@@ -6,10 +6,29 @@ import Terminal from '../components/Compiler/Terminal';
 
 function Compiler() {
   return (
-    <Box>
+    <Box
+      sx={{
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <Header />
-      <CodeEditor />
-      <Terminal />
+      <Box
+        sx={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '10px',
+          pt: '0',
+          gap: '10px',
+        }}
+      >
+        <CodeEditor />
+        <Terminal />
+      </Box>
     </Box>
   );
 }

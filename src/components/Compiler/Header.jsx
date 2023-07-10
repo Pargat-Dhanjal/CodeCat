@@ -16,8 +16,8 @@ function Header() {
     <Box
       sx={{
         width: '100vw',
-        height: '70px',
-        padding: '0.5rem',
+        height: '75px',
+        padding: '10px',
         display: 'flex',
         justifyContent: 'space-between',
       }}
@@ -28,6 +28,7 @@ function Header() {
           display: 'flex',
           alignItems: 'center',
           gap: '0.7rem',
+          width: 'auto',
         }}
       >
         <IconButton
@@ -49,7 +50,7 @@ function Header() {
         </IconButton>
         <Select
           sx={{
-            width: '250px',
+            width: { xs: 150, sm: 250 },
             height: '100%',
             color: 'white',
             borderRadius: 2,
