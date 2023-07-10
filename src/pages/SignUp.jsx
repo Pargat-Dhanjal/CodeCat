@@ -1,8 +1,38 @@
 import { Box, Link } from '@mui/material';
 import React from 'react';
 import SignInCard from '../components/SignInCard';
+import {
+  useSignInWithGoogle,
+  useSignInWithGithub,
+  useSignInWithMicrosoft,
+  useAuthState,
+} from 'react-firebase-hooks/auth';
+import { auth } from '../config/firebase';
 
 function SignUp() {
+  const [user, loading, error] = useAuthState(auth);
+  const [signInWithGithub] = useSignInWithGithub(auth);
+  const [signInWithMicrosoft] = useSignInWithMicrosoft(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (user) {
+    console.log(user);
+    return (
+      <div>
+        <p>Signed In User: {user.email}</p>
+      </div>
+    );
+  }
   return (
     <Box
       sx={{
@@ -15,7 +45,7 @@ function SignUp() {
         textAlign: 'center',
       }}
     >
-      <img src="/logo.svg" alt="CodeCat" width='120px' />
+      <img src="/logo.svg" alt="CodeCat" width="120px" />
       <Box
         sx={{
           width: '90%',
@@ -23,7 +53,11 @@ function SignUp() {
           margin: '0 auto',
         }}
       >
-        <SignInCard />
+        <SignInCard
+          signInWithGoogle={() => signInWithGoogle()}
+          signInWithGithub={() => signInWithGithub()}
+          signInWithMicrosoft={() => signInWithMicrosoft()}
+        />
       </Box>
       <Box
         sx={{
@@ -36,7 +70,14 @@ function SignUp() {
         }}
       >
         Made with ❤️ by{' '}
-        <Link href="https://github.com/Pargat-Dhanjal" underline='hover' rel="noopener" target='_blank'>Pargat-Dhanjal</Link>
+        <Link
+          href="https://github.com/Pargat-Dhanjal"
+          underline="hover"
+          rel="noopener"
+          target="_blank"
+        >
+          Pargat-Dhanjal
+        </Link>
       </Box>
     </Box>
   );

@@ -3,7 +3,12 @@ import React from 'react';
 import { AiOutlineGithub, AiOutlineGoogle } from 'react-icons/ai';
 import { RiMicrosoftFill } from 'react-icons/ri';
 
-function SignInCard() {
+function SignInCard({
+  signInWithGoogle,
+  signInWithGithub,
+  signInWithMicrosoft,
+  handleTryNow
+}) {
   return (
     <Box sx={{ width: '100%' }}>
       <Typography variant="h3">Sign in to</Typography>
@@ -24,6 +29,7 @@ function SignInCard() {
         startIcon={<AiOutlineGithub />}
         fullWidth
         sx={{ mt: 2, py: '0.7rem', mb: '0.7rem' }}
+        onClick={signInWithGithub}
       >
         Sign in with GitHub
       </Button>
@@ -42,6 +48,7 @@ function SignInCard() {
         <Button
           variant="contained"
           startIcon={<AiOutlineGoogle />}
+          onClick={signInWithGoogle}
           sx={{
             width: '100%',
             height: '40px',
@@ -63,6 +70,7 @@ function SignInCard() {
             mb: '0.5rem',
           }}
           color="primary"
+          onClick={signInWithMicrosoft}
         >
           Sign in with Microsoft
         </Button>
@@ -80,6 +88,7 @@ function SignInCard() {
       <Button
         variant="outlined"
         fullWidth
+        onClick={handleTryNow}
         sx={{
           py: '0.7rem',
           mb: '0.7rem',
