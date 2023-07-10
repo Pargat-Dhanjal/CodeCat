@@ -1,6 +1,6 @@
 import { Box, Link } from '@mui/material';
 import React from 'react';
-import SignInCard from '../components/SignInCard';
+import SignInCard from '../components/auth/SignInCard';
 import {
   useSignInWithGoogle,
   useSignInWithGithub,
@@ -55,7 +55,7 @@ function SignUp() {
           signInWithGoogle={() => signInWithGoogle()}
           signInWithGithub={() => signInWithGithub()}
           signInWithMicrosoft={() => signInWithMicrosoft()}
-          handleTryNow={() => navigate('/compiler')}
+          handleTryNow={() => navigate('/try')}
         />
       </Box>
       <Box
