@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Profile from '../components/Home/Profile';
-import LoginBtn from '../components/Login/LoginBtn';
 import { logout } from '../config/firebase';
 import LoginTitle from '../components/Login/LoginTitle';
 import MyFiles from '../components/Home/MyFiles';
@@ -12,6 +11,7 @@ import {
   where,
   updateDoc,
   doc,
+  addDoc,
 } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from '../components/Loader';
@@ -34,41 +34,45 @@ async function addNewFiles(ref) {
 function Home() {
   const [user] = useAuthState(auth);
   const uid = user?.uid;
-  const [userData, setUserData] = useState({});
-  const [firebaseUserId, setFirebaseUserId] = useState('');
+  const [userData, setUserData] = useState(null);
+  const [firebaseUserId, setFirebaseUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [github, setGithub] = useState('');
-  let docRef;
 
-  // get firestoreUID and UserData
   useEffect(() => {
     const getUsers = async () => {
       const data = collection(db, 'users');
       const q = query(data, where('uid', '==', uid));
-      const user = await getDocs(q);
-      user.forEach((doc) => {
-        setUserData(doc.data());
-        setFirebaseUserId(doc.id);
-      });
+      const userDocs = await getDocs(q);
+      if (!userDocs.empty) {
+        userDocs.forEach((doc) => {
+          setUserData(doc.data());
+          setFirebaseUserId(doc.id);
+        });
+      } else {
+        const newUserRef = await addDoc(data, { uid });
+        setFirebaseUserId(newUserRef.id);
+        addNewFiles(newUserRef); // Call addNewFiles here for new user
+      }
       setIsLoading(false);
     };
-    getUsers();
+    if (uid) getUsers();
   }, [uid]);
 
-  // document refference
+  useEffect(() => {
+    if (firebaseUserId && !userData?.myFiles) {
+      const docRef = doc(db, 'users', firebaseUserId);
+      addNewFiles(docRef);
+    }
+  }, [firebaseUserId, userData]);
+
+  useEffect(() => {
+    if (userData?.myFiles && !localStorage.getItem('myFiles') && !isLoading) {
+      localStorage.setItem('myFiles', [JSON.stringify(userData.myFiles)]);
+    }
+  }, [userData, isLoading]);
+
   if (isLoading) return <Loader />;
-
-  if (firebaseUserId) {
-    docRef = doc(db, 'users', firebaseUserId);
-  }
-
-  // add default file if new user
-  if (!userData?.myFiles) {
-    addNewFiles(docRef);
-  }
-  if (!localStorage.getItem('myFiles') && !isLoading) {
-    localStorage.setItem('myFiles', [JSON.stringify(userData?.myFiles)]);
-  }
 
   return (
     <div className="main-display">
@@ -128,7 +132,7 @@ function Home() {
           >
             <LoginTitle title="My Files" />
             <MyFiles
-              myFiles={userData.myFiles}
+              myFiles={userData?.myFiles}
               firebaseUserId={firebaseUserId}
             />
           </div>
